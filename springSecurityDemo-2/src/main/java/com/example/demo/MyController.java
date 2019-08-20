@@ -41,7 +41,7 @@ public class MyController{
 	//
 	@GetMapping(value="/sendmail/{uid}", produces= {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
 	public Object sendingEmail(@PathVariable("uid") String userid) {
-		int id = Integer.parseInt(userid);
+		long id = Long.parseLong(userid);
 		//System.out.println(userid);
 	
     	Register e = employeeService.findById(id);
@@ -85,7 +85,7 @@ public class MyController{
 	//
     @GetMapping(value="/confirmmail/{uid}", produces= {APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE})
    	public Object confirmingEmail(@PathVariable("uid") String userId) {
-    	int id = Integer.parseInt(userId);
+    	long id = Long.parseLong(userId);
     	Register e = employeeService.findById(id);
     	e.setEmailconfirmationflag(true);
     	Register a = employeeService.save(e);
