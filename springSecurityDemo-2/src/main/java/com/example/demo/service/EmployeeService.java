@@ -24,7 +24,7 @@ public class EmployeeService {
 	@Autowired
     private JavaMailSender javaMailSender;
 	 
-	public Register findById(int id) {
+	public Register findById(long id) {
 		return employeeRepository.findById(id).get();
 	}
 	
