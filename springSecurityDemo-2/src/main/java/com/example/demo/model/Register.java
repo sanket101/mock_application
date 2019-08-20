@@ -8,54 +8,97 @@ import javax.persistence.Table;
 @Entity
 public class Register {
 	
-	@Id
-	private int userid;
-	private String emailid;
-	private boolean emailconfirmationflag;
-	private Date accountcreationtime;
-	
-	public Register() {
-		super();
-	}
-	
-	public Register(int id, String mail) {
-		this.userid = id;
-		this.emailid = mail;
-		this.emailconfirmationflag = false;
-		this.accountcreationtime = null;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long userID;
+    private String userRole="user";
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name="emailid" , unique = true)
+    private String emailID;
+    @Column(name = "phone_no")
+    private String phoneNo;
+    private boolean emailConfirmationFlag=false;
+    @Transient
+    Date date = new Date();    
+    private Timestamp accountCreationTime = new Timestamp(date.getTime());
+    
+    public Register() {
+    }
 
-	public int getUserid() {
-		return userid;
-	}
+    public long getUserID() {
+        return userID;
+    }
 
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+    public void setUserID(long userID) {
+        this.userID = userID;
+    }
 
-	public String getEmailid() {
-		return emailid;
-	}
+    public String getUserRole() {
+        return userRole;
+    }
 
-	public void setEmailid(String emailid) {
-		this.emailid = emailid;
-	}
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
-	public boolean isEmailconfirmationflag() {
-		return emailconfirmationflag;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setEmailconfirmationflag(boolean emailconfirmationflag) {
-		this.emailconfirmationflag = emailconfirmationflag;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public Date getAccountcreationtime() {
-		return accountcreationtime;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setAccountcreationtime(Date accountcreationtime) {
-		this.accountcreationtime = accountcreationtime;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String emailID) {
+        this.emailID = emailID;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+ 
+    public boolean isEmailConfirmationFlag() {
+        return emailConfirmationFlag;
+    }
+
+    public void setEmailConfirmationFlag(boolean emailConfirmationFlag) {
+        this.emailConfirmationFlag = emailConfirmationFlag;
+    }
+
+    public Timestamp getAccountCreationTime() {
+        return accountCreationTime;
+    }
+    
+    public void setAccountCreationTime(Timestamp accountCreationTime) {
+        this.accountCreationTime = accountCreationTime;
+    }
+
+    @Override
+    public String toString() {
+        return "User [userID=" + userID + ", userRole=" + userRole + ", firstName=" + firstName + ", lastName="
+                + lastName + ", emailID=" + emailID + ", phoneNo=" + phoneNo + ", emailConfirmationFlag="
+                + emailConfirmationFlag + ", date=" + date + ", accountCreationTime=" + accountCreationTime
+                 + "]";
+    }
 		
 	
 }
